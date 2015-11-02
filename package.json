@@ -1,0 +1,35 @@
+{
+  "name": "@rill/react",
+  "version": "0.1.4",
+  "description": "React views for Rill.",
+  "author": "Dylan Piercey <pierceydylan@gmail.com>",
+  "main": "server/index.js",
+  "browser": "client/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rill-js/react"
+  },
+  "keywords": [
+    "universal",
+    "isomorphic",
+    "react",
+    "render",
+    "rill"
+  ],
+  "peerDependencies": {
+    "react": "0.x",
+    "react-dom": "0.x"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.1.3",
+    "jsdom": "^7.0.2",
+    "mocha": "^2.3.3",
+    "mocha-jsdom": "^1.0.0",
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1",
+    "rill": "rill-js/rill",
+    "supertest": "^1.1.0"
+  }
+}
