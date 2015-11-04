@@ -11,9 +11,8 @@ npm install @rill/react
 # Example
 
 ```javascript
-const rill   = require("rill");
+const app    = require("rill")();
 const React  = require("react");
-const app    = rill();
 const render = require("@rill/react");
 
 const HelloWorld = React.createClass({
@@ -39,12 +38,12 @@ const HelloWorld = React.createClass({
 });
 
 app.use(render());
-app.use(function (req, res, next) {
+app.use(function ({ req, res }, next) {
 	// Render our app.
-	this.render(HelloWorld, { message: "Hello World"});
+	res.render(HelloWorld, { message: "Hello World"});
 
 	// On the server. (In the browser react will render to the dom).
-	this.body; //-> `
+	res.body; //-> `
 		<!DOCTYPE html>
 		<html>
 			<head>
@@ -62,7 +61,7 @@ app.use(function (req, res, next) {
 
 # API
 
-**render(component, locals)** - Renders a component (client or server) and attaches locals to the react context.
+**res.render(component, locals)** - Renders a component (client or server) and attaches locals to the react context.
 
 
 ### Contributions

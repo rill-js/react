@@ -23,9 +23,9 @@ describe("Rill/React", function () {
 		var request = agent.create(
 			Rill()
 				.use(serverViews())
-				.get("/", function (req, res, next) {
-					this.render(view, { hello: "world" });
-					assert.ok(res.body.startsWith("<!DOCTYPE html><html"));
+				.get("/", function (ctx, next) {
+					ctx.res.render(view, { hello: "world" });
+					assert.ok(ctx.res.body.startsWith("<!DOCTYPE html><html"));
 				})
 		);
 
@@ -38,8 +38,8 @@ describe("Rill/React", function () {
 });
 
 function respond (status, test) {
-	return function (req, res) {
-		res.status = status;
-		if (typeof test === "function") test.call(this, req, res);
+	return function (ctx) {
+		ctx.res.status = status;
+		if (typeof test === "function") test(ctx);
 	};
 }
