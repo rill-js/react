@@ -25,13 +25,15 @@ describe("Rill/React", function () {
 				.use(serverViews())
 				.get("/", function (ctx, next) {
 					ctx.res.render(view, { hello: "world" });
-					assert.ok(ctx.res.body.startsWith("<!DOCTYPE html><html"));
 				})
 		);
 
 		request
 			.get("/")
 			.expect(200)
+			.expect(function (res) {
+				assert.ok(res.text.startsWith("<!DOCTYPE html><html"));
+			})
 			.expect("content-type", "text/html; charset=UTF-8")
 			.end(done)
 	});

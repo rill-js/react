@@ -6,18 +6,16 @@ module.exports = function (options) {
 	return function renderReact (ctx, next) {
 		var res = ctx.res;
 		res.render = function (view, locals) {
-			return new Promise(function (accept) {
-				res.body = "<!DOCTYPE html>" + dom.renderToString(
-					React.createElement(base, {
-						locals: locals,
-						view: view
-					})
-				);
-
-				accept();
+			res.body = React.createElement(base, {
+				locals: locals,
+				view: view
 			});
+
 		};
 
-		return next();
+		return next().then(function () {
+			if (!React.isValidElement(res.body)) return;
+			res.body = "<!DOCTYPE html>" + dom.renderToString(res.body);
+		});
 	};
 };

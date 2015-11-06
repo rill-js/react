@@ -6,16 +6,15 @@ module.exports = function (options) {
 	return function renderReact (ctx, next) {
 		var res = ctx.res;
 		res.render = function (view, locals) {
-			return new Promise(function (accept) {
-				res.body = dom.render(
-					React.createElement(base, {
-						locals: locals,
-						view: view
-					}), document, accept
-				);
+			res.body = React.createElement(base, {
+				locals: locals,
+				view: view
 			});
 		};
 
-		return next();
+		return next().then(function () {
+			if (!React.isValidElement(res.body) || res.headers["location"]) return;
+			return new Promise(function (accept) { dom.render(res.body, document, accept); });
+		});
 	};
 };
