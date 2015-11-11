@@ -29,6 +29,7 @@ const HelloWorld = React.createClass({
 					<meta name="description" content="Rill Application"/>
 				</head>
 				<body>
+					{ locals.title }
 					{ locals.message }
 					<script src="/app.js"/>
 				</body>
@@ -38,6 +39,13 @@ const HelloWorld = React.createClass({
 });
 
 app.use(render());
+
+app.use(function ({ locals }), next) {
+	// locals will be provided on the context and eventually passed to the view.
+	locals.title = "Rill Render";
+	return next();	
+});
+
 app.use(function ({ req, res }, next) {
 	// Render our app.
 	res.render(HelloWorld, { message: "Hello World"});
@@ -51,6 +59,7 @@ app.use(function ({ req, res }, next) {
 				<meta name="description" content="Rill Application">
 			</head>
 			<body>
+				Rill Render
 				Hello World
 				<script src="/app.js"></script>
 			</body>
