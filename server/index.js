@@ -4,7 +4,6 @@ var base  = require("../lib/base.js");
 
 module.exports = function (options) {
 	return function renderReact (ctx, next) {
-		ctx.locals = ctx.locals || {};
 		var res = ctx.res;
 
 		res.render = function (view, locals) {
