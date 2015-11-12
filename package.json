@@ -1,6 +1,6 @@
 {
   "name": "@rill/react",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "React views for Rill.",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
   "main": "server/index.js",
@@ -31,5 +31,8 @@
     "react-dom": "^0.14.1",
     "rill": "^0.1.1",
     "supertest": "^1.1.0"
+  },
+  "dependencies": {
+    "statuses": "^1.2.1"
   }
 }

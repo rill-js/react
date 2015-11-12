@@ -26,7 +26,7 @@ describe("Rill/React", function () {
 				.use(serverViews())
 				.get("/", function (ctx, next) {
 					ctx.locals["ctx"] = "locals";
-					ctx.res.render(view, { hello: "world" });
+					ctx.render(view, { hello: "world" });
 				})
 				.listen()
 		);

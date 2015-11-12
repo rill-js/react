@@ -13,7 +13,7 @@ npm install @rill/react
 ```javascript
 const app    = require("rill")();
 const React  = require("react");
-const render = require("@rill/react");
+const reactViews = require("@rill/react");
 
 const HelloWorld = React.createClass({
 	// Locals will be provided as context.
@@ -38,7 +38,7 @@ const HelloWorld = React.createClass({
 	}
 });
 
-app.use(render());
+app.use(reactViews());
 
 // Set locals on the app.
 app.set("version", "0.x");
@@ -49,9 +49,9 @@ app.use(function ({ locals }), next) {
 	return next();	
 });
 
-app.use(function ({ req, res }, next) {
+app.use(function ({ req, res, render }, next) {
 	// Render our app.
-	res.render(HelloWorld, { message: "Hello World"});
+	render(HelloWorld, { message: "Hello World"});
 
 	// On the server. (In the browser react will render to the dom).
 	res.body; //-> `
@@ -73,7 +73,7 @@ app.use(function ({ req, res }, next) {
 
 # API
 
-**res.render(component, locals)** - Renders a component (client or server) and attaches locals to the react context.
+**ctx.render(component, locals)** - Renders a component (client or server) and attaches locals to the react context.
 
 
 ### Contributions
