@@ -21,6 +21,7 @@ const HelloWorld = React.createClass({
 		locals: React.PropTypes.object
 	},
 	render: function () {
+		const { props }  = this;
 		const { locals } = this.context;
 		return (
 			<html>
@@ -30,7 +31,7 @@ const HelloWorld = React.createClass({
 				</head>
 				<body>
 					{ locals.title }@{ locals.version }
-					{ locals.message }
+					{ props.message }
 					<script src="/app.js"/>
 				</body>
 			</html>

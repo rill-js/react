@@ -22,7 +22,14 @@ module.exports = function (options) {
 				statuses.empty[res.status] ||
 				(res.get("Location") && !res.get("Refresh"))
 			) return;
-			return new Promise(function (accept) { dom.render(res.body, document, accept); });
+			return new Promise(function (accept, reject) {
+				try {
+					dom.render(res.body, document, accept);
+				} catch (err) {
+					res.body = undefined;
+					reject(err);
+				}
+			});
 		});
 	};
 };

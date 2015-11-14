@@ -22,7 +22,16 @@ module.exports = function (options) {
 				statuses.empty[res.status] ||
 				(res.get("Location") && !res.get("Refresh"))
 			) return;
-			res.body = "<!DOCTYPE html>" + dom.renderToString(res.body);
+
+			try {
+				res.body = (
+					"<!DOCTYPE html>" +
+					dom.renderToString(res.body)
+				);
+			} catch (err) {
+				res.body = undefined;
+				throw err;
+			}
 		});
 	};
 };
