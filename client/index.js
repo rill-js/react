@@ -7,11 +7,10 @@ module.exports = function (options) {
 	return function renderReact (ctx, next) {
 		var res = ctx.res;
 
-		ctx.render = function (view, locals) {
-			for (var key in locals) ctx.locals[key] = locals[key];
-
+		ctx.render = function (view, props) {
 			res.body = React.createElement(base, {
 				locals: ctx.locals,
+				props: props,
 				view: view
 			});
 		};

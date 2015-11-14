@@ -14,9 +14,10 @@ describe("Rill/React", function () {
 			},
 			render: function () {
 				var locals = this.context.locals;
+				var props  = this.props;
 				return React.createElement("html", null,
 					React.createElement("head"),
-					React.createElement("body", null, locals.hello + locals.ctx)
+					React.createElement("body", null, props.hello + locals.ctx)
 				);
 			}
 		});
