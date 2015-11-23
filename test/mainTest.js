@@ -8,7 +8,7 @@ var serverViews = require("../server");
 
 describe("Rill/React", function () {
 	it("should work on the server", function (done) {
-		var view = React.createClass({
+		var View = React.createClass({
 			contextTypes: {
 				locals: React.PropTypes.object
 			},
@@ -27,7 +27,7 @@ describe("Rill/React", function () {
 				.use(serverViews())
 				.get("/", function (ctx, next) {
 					ctx.locals["ctx"] = "locals";
-					ctx.render(view, { hello: "world" });
+					ctx.render(React.createElement(View, { hello: "world" }));
 				})
 				.listen()
 		);

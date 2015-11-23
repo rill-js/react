@@ -30,7 +30,7 @@ const HelloWorld = React.createClass({
 					<meta name="description" content="Rill Application"/>
 				</head>
 				<body>
-					{ locals.title }@{ locals.version }
+					{ locals.title }
 					{ props.message }
 					<script src="/app.js"/>
 				</body>
@@ -41,9 +41,6 @@ const HelloWorld = React.createClass({
 
 app.use(reactViews());
 
-// Set locals on the app.
-app.set("version", "0.x");
-
 // Set locals in middleware.
 app.use(function ({ locals }), next) {
 	locals.title = "@rill/react";
@@ -52,7 +49,7 @@ app.use(function ({ locals }), next) {
 
 app.use(function ({ req, res, render }, next) {
 	// Render our app.
-	render(HelloWorld, { message: "Hello World"});
+	render(<HelloWorld message="Hello World"/>);
 
 	// On the server. (In the browser react will render to the dom).
 	res.body; //-> `

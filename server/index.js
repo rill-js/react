@@ -3,17 +3,11 @@ var dom      = require("react-dom/server");
 var statuses = require("statuses");
 var base     = require("../lib/base.js");
 
-module.exports = function (options) {
+module.exports = function (opts) {
 	return function renderReact (ctx, next) {
 		var res = ctx.res;
 
-		ctx.render = function (view, props) {
-			res.body = React.createElement(base, {
-				locals: ctx.locals,
-				props: props,
-				view: view
-			});
-		};
+		ctx.render = function (view) { res.body = view; };
 
 		return next().then(function () {
 			if (
@@ -26,7 +20,12 @@ module.exports = function (options) {
 			try {
 				res.body = (
 					"<!DOCTYPE html>" +
-					dom.renderToString(res.body)
+					dom.renderToString(
+						React.createElement(base, {
+							locals: ctx.locals,
+							view:   res.body
+						})
+					)
 				);
 			} catch (err) {
 				res.body = undefined;
