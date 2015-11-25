@@ -72,7 +72,7 @@ app.use(function ({ req, res, render }, next) {
 
 # API
 
-**ctx.render(component, locals)** - Renders a component (client or server) and attaches locals to the react context.
+**ctx.render(ReactElement)** - Renders a react element (client or server).
 
 
 ### Contributions

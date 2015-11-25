@@ -22,7 +22,7 @@ module.exports = function (opts) {
 					"<!DOCTYPE html>" +
 					dom.renderToString(
 						React.createElement(base, {
-							session: ctx.req.session,
+							session: ctx.session,
 							locals: ctx.locals,
 							view:   res.body
 						})
