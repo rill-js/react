@@ -16,13 +16,14 @@ const React  = require("react");
 const reactViews = require("@rill/react");
 
 const HelloWorld = React.createClass({
-	// Locals will be provided as context.
+	// Locals and a session will be provided as context if available.
 	contextTypes: {
-		locals: React.PropTypes.object
+		locals: React.PropTypes.object,
+		session: React.PropTypes.object
 	},
 	render: function () {
 		const { props }  = this;
-		const { locals } = this.context;
+		const { session, locals } = this.context;
 		return (
 			<html>
 				<head>

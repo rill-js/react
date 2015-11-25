@@ -20,6 +20,7 @@ module.exports = function (opts) {
 				try {
 					dom.render(
 						React.createElement(base, {
+							session: ctx.req.session,
 							locals: ctx.locals,
 							view:   res.body
 						}),
