@@ -45,15 +45,16 @@ app.use(reactViews());
 // Set locals in middleware.
 app.use(function ({ locals }), next) {
 	locals.title = "@rill/react";
-	return next();	
+	return next();
 });
 
-app.use(function ({ req, res, render }, next) {
-	// Render our app.
-	render(<HelloWorld message="Hello World"/>);
+app.use(function ({ req, res }, next) {
+	// Just set the body to a react element.
+	// updates the dom in the browser, or render a string in the server.
+	res.body = <HelloWorld message="Hello World"/>;
 
-	// On the server. (In the browser react will render to the dom).
-	res.body; //-> `
+	// On the server the final response will be.
+	`
 		<!DOCTYPE html>
 		<html>
 			<head>
@@ -69,11 +70,6 @@ app.use(function ({ req, res, render }, next) {
 	`
 });
 ```
-
-# API
-
-**ctx.render(ReactElement)** - Renders a react element (client or server).
-
 
 ### Contributions
 

@@ -6,9 +6,6 @@ var base     = require("../lib/base.js");
 module.exports = function (opts) {
 	return function renderReact (ctx, next) {
 		var res = ctx.res;
-
-		ctx.render = function (view) { res.body = view; };
-
 		return next().then(function () {
 			if (
 				!React.isValidElement(res.body) ||

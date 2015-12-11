@@ -27,7 +27,7 @@ describe("Rill/React", function () {
 				.use(serverViews())
 				.get("/", function (ctx, next) {
 					ctx.locals["ctx"] = "locals";
-					ctx.render(React.createElement(View, { hello: "world" }));
+					ctx.res.body = React.createElement(View, { hello: "world" });
 				})
 				.listen()
 		);
