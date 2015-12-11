@@ -14,7 +14,7 @@ module.exports = function (opts) {
 				!React.isValidElement(res.body) ||
 				statuses.redirect[res.status] ||
 				statuses.empty[res.status] ||
-				(res.get("Location") && !res.get("Refresh"))
+				res.get("Location")
 			) return;
 
 			try {
