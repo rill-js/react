@@ -11,18 +11,13 @@ npm install @rill/react
 # Example
 
 ```javascript
-const app    = require("rill")();
-const React  = require("react");
+const app        = require("rill")();
+const React      = require("react");
 const reactViews = require("@rill/react");
 
-const HelloWorld = React.createClass({
-	// Locals and a session will be provided as context if available.
-	contextTypes: {
-		locals: React.PropTypes.object,
-		session: React.PropTypes.object
-	},
-	render: function () {
-		const { props }  = this;
+class HelloWorld extends React.Component {
+	render() {
+		const { props }           = this;
 		const { session, locals } = this.context;
 		return (
 			<html>
@@ -38,20 +33,25 @@ const HelloWorld = React.createClass({
 			</html>
 		);
 	}
-});
+};
+// Locals and a session will be provided as context if available.
+HelloWorld.contextTypes = {
+	locals: React.PropTypes.object,
+	session: React.PropTypes.object
+};
 
 app.use(reactViews());
 
 // Set locals in middleware.
-app.use(function ({ locals }), next) {
+app.use(({ locals }), next)=> {
 	locals.title = "@rill/react";
 	return next();
 });
 
-app.use(function ({ req, res }, next) {
+app.use(({ req, res }, next)=> {
 	// Just set the body to a react element.
 	// updates the dom in the browser, or render a string in the server.
-	res.body = <HelloWorld message="Hello World"/>;
+	res.body = (<HelloWorld message="Hello World"/>);
 
 	// On the server the final response will be.
 	`
