@@ -1,33 +1,35 @@
-var React    = require("react");
-var dom      = require("react-dom");
-var statuses = require("statuses");
-var base     = require("../lib/base.js");
+var React = require('react')
+var dom = require('react-dom')
+var statuses = require('statuses')
+var base = require('../share/base')
+var wrap = require('../share/wrap')
 
 module.exports = function (opts) {
-	return function renderReact (ctx, next) {
-		var res = ctx.res;
-		return next().then(function () {
-			if (
-				!React.isValidElement(res.body) ||
-				statuses.redirect[res.status] ||
-				statuses.empty[res.status] ||
-				res.get("Location")
-			) return;
-			return new Promise(function (accept, reject) {
-				try {
-					dom.render(
-						React.createElement(base, {
-							session: ctx.session,
-							locals: ctx.locals,
-							view:   res.body
-						}),
-						document, accept
-					);
-				} catch (err) {
-					res.body = undefined;
-					reject(err);
-				}
-			});
-		});
-	};
-};
+  return function renderReact (ctx, next) {
+    var res = ctx.res
+    return next().then(function () {
+      if (
+        !React.isValidElement(res.body) ||
+        statuses.redirect[res.status] ||
+        statuses.empty[res.status] ||
+        res.get('Location')
+        ) return
+      return new Promise(function (resolve, reject) {
+        try {
+          dom.render(
+            React.createElement(base, {
+              session: ctx.session,
+              locals: ctx.locals,
+              view: res.body
+            }),
+            document, resolve
+          )
+        } catch (err) {
+          res.body = undefined
+          reject(err)
+        }
+      })
+    })
+  }
+}
+module.exports.wrap = wrap

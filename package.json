@@ -1,38 +1,55 @@
 {
   "name": "@rill/react",
-  "version": "1.0.0",
   "description": "React views for Rill.",
+  "version": "2.0.0",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
-  "main": "server/index.js",
   "browser": "client/index.js",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rill-js/react"
+  "bugs": "https://github.com/rill-js/react/issues",
+  "dependencies": {
+    "statuses": "^1.2.1"
   },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0",
+    "jsdom": "^8.4.0",
+    "jsdom-global": "^1.7.0",
+    "mocha": "^2.4.5",
+    "react": "^0.14.8",
+    "react-dom": "^0.14.8",
+    "rill": "^0.5.15",
+    "snazzy": "^3.0.1",
+    "standard": "^6.0.8",
+    "supertest": "^1.2.0"
+  },
+  "homepage": "https://github.com/rill-js/react",
   "keywords": [
-    "universal",
     "isomorphic",
     "react",
     "render",
-    "rill"
+    "rill",
+    "universal"
   ],
+  "license": "MIT",
+  "main": "server/index.js",
   "peerDependencies": {
     "react": "0.x",
     "react-dom": "0.x"
   },
-  "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-mocha": "^2.2.0",
-    "jsdom": "^7.2.0",
-    "mocha": "^2.3.4",
-    "mocha-jsdom": "^1.0.0",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "rill": "^0.2.11",
-    "supertest": "^1.1.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rill-js/react"
   },
-  "dependencies": {
-    "statuses": "^1.2.1"
+  "scripts": {
+    "test": "standard --verbose | snazzy && gulp test"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach"
+    ]
   }
 }
