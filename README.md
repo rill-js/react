@@ -18,28 +18,22 @@ const app        = require("rill")();
 const React      = require("react");
 const renderer = require("@rill/react");
 
-class HelloWorld extends React.Component {
-	render() {
-		const { props }           = this;
-		const { session, locals } = this.context;
-		return (
-			<html>
-				<head>
-					<title>My App</title>
-					<meta name="description" content="Rill Application"/>
-				</head>
-				<body>
-					{ locals.title }
-					{ props.message }
-					<div>{props.children}</div>
-					<script src="/app.js"/>
-				</body>
-			</html>
-		);
-	}
-};
-// Locals and a session will be provided as context if available.
-HelloWorld.contextTypes = { locals: React.PropTypes.object };
+function HelloWorld (props, { locals }) {
+	return (
+		<html>
+			<head>
+				<title>My App</title>
+				<meta name="description" content="Rill Application"/>
+			</head>
+			<body>
+				{ locals.title }
+				{ props.message }
+				<div>{props.children}</div>
+				<script src="/app.js"/>
+			</body>
+		</html>
+	);
+}
 
 app.use(renderer());
 
@@ -52,7 +46,7 @@ app.use(({ locals }), next)=> {
 app.use(({ req, res }, next)=> {
 	// Just set the body to a react element.
 	// updates the dom in the browser, or render a string in the server.
-	res.body = (<HelloWorld message="Hello World"/>);
+	res.body = <HelloWorld message="Hello World"/>;
 
 	// On the server the final response will be.
 	`
