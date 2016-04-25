@@ -1,7 +1,7 @@
 {
   "name": "@rill/react",
   "description": "React views for Rill.",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
   "browser": "client/index.js",
   "bugs": "https://github.com/rill-js/react/issues",
@@ -32,8 +32,8 @@
   "license": "MIT",
   "main": "server/index.js",
   "peerDependencies": {
-    "react": "0.x",
-    "react-dom": "0.x"
+    "react": "0.x || ^15.0.1",
+    "react-dom": "0.x || ^15.0.1"
   },
   "repository": {
     "type": "git",
