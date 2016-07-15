@@ -1,7 +1,7 @@
 {
   "name": "@rill/react",
   "description": "React views for Rill.",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
   "browser": "client/index.js",
   "bugs": "https://github.com/rill-js/react/issues",
@@ -11,12 +11,12 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-mocha": "^2.2.0",
-    "jsdom": "^9.2.1",
+    "jsdom": "^9.4.1",
     "jsdom-global": "^2.0.0",
     "mocha": "^2.5.3",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
-    "rill": "^0.6.5",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "rill": "^0.6.7",
     "snazzy": "^4.0.0",
     "standard": "^7.1.2",
     "supertest": "^1.2.0"

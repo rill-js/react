@@ -24,6 +24,7 @@ module.exports = function (opts) {
             }),
             document, resolve
           )
+          res.set('Content-Type', 'text/html; charset=UTF-8')
         } catch (err) {
           res.body = undefined
           reject(err)

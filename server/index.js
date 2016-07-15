@@ -16,16 +16,14 @@ module.exports = function (opts) {
         ) return
 
       try {
-        res.body = (
-          '<!DOCTYPE html>' +
-          dom.renderToString(
-            React.createElement(base, {
-              session: ctx.session,
-              locals: ctx.locals,
-              view: res.body
-            })
-          )
+        res.body = '<!DOCTYPE html>' + dom.renderToString(
+          React.createElement(base, {
+            session: ctx.session,
+            locals: ctx.locals,
+            view: res.body
+          })
         )
+        res.set('Content-Type', 'text/html; charset=UTF-8')
       } catch (err) {
         res.body = undefined
         throw err
