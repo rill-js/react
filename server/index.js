@@ -18,7 +18,6 @@ module.exports = function (opts) {
       try {
         res.body = '<!DOCTYPE html>' + dom.renderToString(
           React.createElement(base, {
-            session: ctx.session,
             locals: ctx.locals,
             view: res.body
           })
