@@ -1,7 +1,7 @@
 {
   "name": "@rill/react",
   "description": "React views for Rill.",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
   "browser": "client/index.js",
   "bugs": "https://github.com/rill-js/react/issues",
@@ -9,17 +9,15 @@
     "statuses": "^1.3.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-mocha": "^2.2.0",
-    "jsdom": "^9.4.1",
-    "jsdom-global": "^2.0.0",
-    "mocha": "^2.5.3",
-    "react": "^15.2.1",
-    "react-dom": "^15.2.1",
-    "rill": "^0.6.7",
-    "snazzy": "^4.0.0",
-    "standard": "^7.1.2",
-    "supertest": "^1.2.0"
+    "jsdom": "^9.4.5",
+    "jsdom-global": "^2.1.0",
+    "mocha": "^3.0.2",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "rill": "^0.8.10",
+    "snazzy": "^4.0.1",
+    "standard": "^8.0.0",
+    "supertest": "^2.0.0"
   },
   "homepage": "https://github.com/rill-js/react",
   "keywords": [
@@ -40,7 +38,8 @@
     "url": "https://github.com/rill-js/react"
   },
   "scripts": {
-    "test": "standard --verbose | snazzy && gulp test"
+    "lint": "standard --verbose | snazzy",
+    "test": "npm run lint && mocha ./test/**/*.test.js"
   },
   "standard": {
     "globals": [

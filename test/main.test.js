@@ -1,3 +1,5 @@
+'use strict'
+
 var assert = require('assert')
 var agent = require('supertest')
 var Rill = require('rill')

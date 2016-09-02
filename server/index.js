@@ -1,3 +1,5 @@
+'use strict'
+
 var React = require('react')
 var dom = require('react-dom/server')
 var statuses = require('statuses')
