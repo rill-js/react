@@ -25,10 +25,13 @@ module.exports = function (opts) {
             }),
             document, resolve
           )
+
+          if (res.status === 404) res.status = 200
           res.set('Content-Type', 'text/html; charset=UTF-8')
         } catch (err) {
-          res.body = undefined
           reject(err)
+        } finally {
+          res.body = ''
         }
       })
     })
