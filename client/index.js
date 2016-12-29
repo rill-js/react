@@ -29,7 +29,7 @@ module.exports = function (opts) {
           if (res.status === 404) res.status = 200
           res.set('Content-Type', 'text/html; charset=UTF-8')
         } catch (err) {
-          reject(err)
+          console && console.error && console.error(err)
         } finally {
           res.body = ''
         }
