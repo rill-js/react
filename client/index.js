@@ -6,8 +6,16 @@ var statuses = require('statuses')
 var base = require('../share/base')
 var wrap = require('../share/wrap')
 
-module.exports = function (opts) {
-  return function renderReact (ctx, next) {
+// Expose api.
+reactMiddlewareSetup.wrap = wrap
+module.exports = reactMiddlewareSetup
+
+/**
+ * Creates a Rill middleware that checks for react components in the body.
+ * React components are rendered into the document.
+ */
+function reactMiddlewareSetup (opts) {
+  return function reactMiddleware (ctx, next) {
     var res = ctx.res
     return next().then(function () {
       if (
@@ -37,4 +45,3 @@ module.exports = function (opts) {
     })
   }
 }
-module.exports.wrap = wrap
