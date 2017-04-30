@@ -1,15 +1,16 @@
 'use strict'
 
 var React = require('react')
-var object = React.PropTypes.object
+var create = require('create-react-class')
+var PropTypes = require('prop-types')
 
-module.exports = React.createClass({
+module.exports = create({
   displayName: 'BaseElement',
   propTypes: {
-    locals: object,
-    view: React.PropTypes.element.isRequired
+    locals: PropTypes.object,
+    view: PropTypes.element.isRequired
   },
-  childContextTypes: { locals: object },
+  childContextTypes: { locals: PropTypes.object },
   getChildContext: function () {
     return { locals: this.props.locals }
   },
@@ -31,7 +32,7 @@ function ensureContextType (el) {
   // Ensure context types exist.
   el.type.contextTypes = el.type.contextTypes || {}
   // Check if we should automatically add locals.
-  if (!('locals' in el.type.contextTypes)) el.type.contextTypes.locals = object
+  if (!('locals' in el.type.contextTypes)) el.type.contextTypes.locals = PropTypes.object
   // Ensure child context types.
   React.Children.forEach(el.props.children, ensureContextType)
 

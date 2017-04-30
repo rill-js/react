@@ -4,13 +4,15 @@ var assert = require('assert')
 var agent = require('supertest')
 var Rill = require('rill')
 var React = require('react')
+var create = require('create-react-class')
+var PropTypes = require('prop-types')
 var serverViews = require('../server')
 
 describe('Rill/React', function () {
   it('should work on the server', function (done) {
-    var View = React.createClass({
+    var View = create({
       contextTypes: {
-        locals: React.PropTypes.object
+        locals: PropTypes.object
       },
       render: function () {
         var locals = this.context.locals
