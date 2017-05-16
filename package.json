@@ -6,17 +6,17 @@
   "browser": "client/index.js",
   "bugs": "https://github.com/rill-js/react/issues",
   "dependencies": {
-    "create-react-class": "^15.5.2",
-    "prop-types": "^15.5.8",
+    "create-react-class": "^15.5.3",
+    "prop-types": "^15.5.10",
     "statuses": "^1.3.1"
   },
   "devDependencies": {
-    "jsdom": "^10.0.0",
-    "jsdom-global": "^2.1.1",
-    "mocha": "^3.3.0",
+    "jsdom": "^10.1.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^3.4.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "rill": "^4.3.4",
+    "rill": "^4.3.5",
     "snazzy": "^7.0.0",
     "standard": "^10.0.2",
     "supertest": "^3.0.0"
