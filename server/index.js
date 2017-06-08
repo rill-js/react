@@ -7,8 +7,8 @@ var base = require('../share/base')
 var wrap = require('../share/wrap')
 
 // Expose api.
-reactMiddlewareSetup.wrap = wrap
-module.exports = reactMiddlewareSetup
+module.exports = exports = reactMiddlewareSetup
+exports.wrap = wrap
 
 /**
  * Creates a Rill middleware that checks for react components in the body.
