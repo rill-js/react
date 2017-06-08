@@ -16,6 +16,7 @@ exports.wrap = wrap
  */
 function reactMiddlewareSetup (opts) {
   return function reactMiddleware (ctx, next) {
+    var req = ctx.req
     var res = ctx.res
     return next().then(function () {
       if (
@@ -29,7 +30,8 @@ function reactMiddlewareSetup (opts) {
           dom.render(
             React.createElement(base, {
               locals: ctx.locals,
-              view: res.body
+              view: res.body,
+              req: req
             }),
             document, resolve
           )

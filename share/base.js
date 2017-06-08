@@ -8,11 +8,12 @@ module.exports = create({
   displayName: 'BaseElement',
   propTypes: {
     locals: PropTypes.object,
+    req: PropTypes.object.isRequired,
     view: PropTypes.element.isRequired
   },
-  childContextTypes: { locals: PropTypes.object },
+  childContextTypes: { locals: PropTypes.object, req: PropTypes.object },
   getChildContext: function () {
-    return { locals: this.props.locals }
+    return { locals: this.props.locals, req: this.props.req }
   },
   render: function () {
     return ensureContextType(this.props.view)

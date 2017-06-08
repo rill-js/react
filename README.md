@@ -74,7 +74,7 @@ app.use(({ req, res }, next)=> {
 })
 
 // An example HelloWorld component in React.
-function HelloWorld (props, { locals }) {
+function HelloWorld (props, { locals, req }) {
 	return (
 		<html>
 			<head>
