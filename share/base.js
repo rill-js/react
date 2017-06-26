@@ -1,31 +1,40 @@
 'use strict'
 
 var React = require('react')
-var create = require('create-react-class')
+var Component = React.Component
 var PropTypes = require('prop-types')
 var childContextTypes = {
   locals: PropTypes.object,
   req: PropTypes.object
 }
 
-module.exports = create({
-  displayName: 'BaseElement',
-  childContextTypes: childContextTypes,
-  propTypes: {
-    locals: PropTypes.object,
-    req: PropTypes.object.isRequired,
-    view: PropTypes.element.isRequired
-  },
-  getChildContext: function () {
-    return {
-      locals: this.props.locals,
-      req: this.props.req
-    }
-  },
-  render: function () {
-    return ensureContextType(this.props.view)
+// Expose component.
+module.exports = Base
+
+/**
+ * React component that provides all sub components with a Rill context (includes locals and req).
+ * @param {*} props - the properties for the component.
+ * @param {*} ctx - the original context for the component.
+ */
+function Base (props, ctx) { Component.call(this, props, ctx) }
+
+// Extend react component.
+Base.prototype = Object.create(Component.prototype)
+Base.prototype.constructor = Base
+
+// Setup react context.
+Base.childContextTypes = childContextTypes
+Base.prototype.getChildContext = function () {
+  return {
+    locals: this.props.locals,
+    req: this.props.req
   }
-})
+}
+
+// Automatically add context to direct children.
+Base.prototype.render = function () {
+  return ensureContextType(this.props.view)
+}
 
 /**
  * Recursively iterates over a React Element and it's children to ensure that it accepts a contextType.
