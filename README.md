@@ -99,7 +99,7 @@ Sometimes the goal is not to render the entire page with React, or you want to u
 
 ```js
 // Use a query selector to set the root element.
-app.use(render({ root: '#my-element' }))
+app.use(renderer({ root: '#my-element' }))
 ```
 
 # Nesting Components
