@@ -15,6 +15,7 @@ exports.wrap = wrap
  * React components are converted to html.
  */
 function reactMiddlewareSetup (opts) {
+  var hasRoot = Boolean(opts && opts.root)
   return function reactMiddleware (ctx, next) {
     var req = ctx.req
     var res = ctx.res
@@ -27,7 +28,7 @@ function reactMiddlewareSetup (opts) {
         ) return
 
       try {
-        res.body = '<!DOCTYPE html>' + dom.renderToString(
+        res.body = dom.renderToString(
           React.createElement(base, {
             locals: ctx.locals,
             view: res.body,
@@ -35,6 +36,7 @@ function reactMiddlewareSetup (opts) {
           })
         )
 
+        if (!hasRoot) res.body = '<!DOCTYPE html>' + res.body
         if (res.status === 404) res.status = 200
         res.set('Content-Type', 'text/html; charset=UTF-8')
       } catch (err) {

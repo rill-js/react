@@ -15,6 +15,10 @@ exports.wrap = wrap
  * React components are rendered into the document.
  */
 function reactMiddlewareSetup (opts) {
+  var root = (opts && opts.root)
+    ? document.querySelector(opts.root)
+    : document
+
   return function reactMiddleware (ctx, next) {
     var req = ctx.req
     var res = ctx.res
@@ -33,7 +37,8 @@ function reactMiddlewareSetup (opts) {
               view: res.body,
               req: req
             }),
-            document, resolve
+            root,
+            resolve
           )
 
           if (res.status === 404) res.status = 200

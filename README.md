@@ -3,7 +3,7 @@
   <img src="https://raw.githubusercontent.com/rill-js/rill/master/Rill-Icon.jpg" alt="Rill"/>
   <br/>
   @rill/react
-	<br/>
+  <br/>
 
   <!-- Stability -->
   <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
@@ -47,49 +47,59 @@ app.use(renderer())
 
 // Set locals in middleware.
 app.use(({ locals }), next)=> {
-	locals.title = '@rill/react'
-	return next()
+  locals.title = '@rill/react'
+  return next()
 })
 
 app.use(({ req, res }, next)=> {
-	// Just set the body to a react element.
-	// updates the dom in the browser, or render a string in the server.
-	res.body = <HelloWorld message="Hello World"/>
+  // Just set the body to a react element.
+  // updates the dom in the browser, or render a string in the server.
+  res.body = <HelloWorld message="Hello World"/>
 
-	// On the server the final response will be.
-	`
-		<!DOCTYPE html>
-		<html>
-			<head>
-				<title>My App</title>
-				<meta name="description" content="Rill Application">
-			</head>
-			<body>
-				@rill/react@0.x
-				Hello World
-				<script src="/app.js"></script>
-			</body>
-		</html>
-	`
+  // On the server the final response will be.
+  `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>My App</title>
+        <meta name="description" content="Rill Application">
+      </head>
+      <body>
+        @rill/react@0.x
+        Hello World
+        <script src="/app.js"></script>
+      </body>
+    </html>
+  `
 })
 
 // An example HelloWorld component in React.
 function HelloWorld (props, { locals, req }) {
-	return (
-		<html>
-			<head>
-				<title>My App</title>
-				<meta name="description" content="Rill Application"/>
-			</head>
-			<body>
-				{locals.title}
-				{props.message}
-				<div>{props.children}</div>
-				<script src="/app.js"/>
-			</body>
-		</html>
-	)
+  return (
+    <html>
+      <head>
+        <title>My App</title>
+        <meta name="description" content="Rill Application"/>
+      </head>
+      <body>
+        {locals.title}
+        {props.message}
+        <div>{props.children}</div>
+        <script src="/app.js"/>
+      </body>
+    </html>
+  )
 }
+```
+
+# Sub page rendering.
+Sometimes the goal is not to render the entire page with React, or you want to use something like [@rill/page](https://github.com/rill-js/page) to handle the document.
+
+@rill/react adds the ability to change the root element with an option for this purpose.
+
+```js
+// Use a query selector to set the root element.
+app.use(render({ root: '#my-element' }))
 ```
 
 # Nesting Components
@@ -103,8 +113,8 @@ const { wrap } = require("@rill/react")
 // The `props` option can be a function (called with a rill `ctx`) or an object.
 app.get('/*', wrap(HelloWorld, { message: 'world' }))
 app.get('/home', ({ res })=> {
-	// This will be a child of the HelloWorld component.
-	res.body = <MyOtherComponent/>
+  // This will be a child of the HelloWorld component.
+  res.body = <MyOtherComponent/>
 })
 ```
 
