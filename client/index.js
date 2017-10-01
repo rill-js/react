@@ -31,7 +31,7 @@ function reactMiddlewareSetup (opts) {
         ) return
       return new Promise(function (resolve, reject) {
         try {
-          dom.render(
+          dom.hydrate(
             React.createElement(base, {
               locals: ctx.locals,
               view: res.body,
