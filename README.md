@@ -29,6 +29,8 @@
 
 Universal React rendering middleware for [Rill](https://github.com/rill-js/rill).
 
+This middleware depends on React@16 for async rendering. If you would like to use older versions of react try using @rill/react@5 and below.
+
 # Installation
 
 ```console
@@ -38,11 +40,14 @@ npm install @rill/react
 # Example
 
 ```javascript
-const app = require('rill')()
-const React = require('react')
-const renderer = require('@rill/react')
+import Rill from 'rill'
+import React from 'react'
+import renderer from '@rill/react'
 
-// Setup React rendering in Rill.
+// Create a rill app.
+const app = Rill()
+
+// Setup React rendering in middleware.
 app.use(renderer())
 
 // Set locals in middleware.
@@ -51,12 +56,13 @@ app.use(({ locals }), next)=> {
   return next()
 })
 
+// Render a react view.
 app.use(({ req, res }, next)=> {
   // Just set the body to a react element.
   // updates the dom in the browser, or render a string in the server.
   res.body = <HelloWorld message="Hello World"/>
 
-  // On the server the final response will be.
+  // On the server the final response will be a stream with:
   `
     <!DOCTYPE html>
     <html>

@@ -2,6 +2,7 @@
 
 var React = require('react')
 var dom = require('react-dom/server')
+var combineStreams = require('combine-streams')
 var statuses = require('statuses')
 var base = require('../share/base')
 var wrap = require('../share/wrap')
@@ -28,15 +29,16 @@ function reactMiddlewareSetup (opts) {
         ) return
 
       try {
-        res.body = dom.renderToString(
-          React.createElement(base, {
-            locals: ctx.locals,
-            view: res.body,
-            req: req
-          })
-        )
-
-        if (!hasRoot) res.body = '<!DOCTYPE html>' + res.body
+        res.body = combineStreams()
+          .append(hasRoot ? '' : '<!DOCTYPE html>')
+          .append(dom.renderToNodeStream(
+            React.createElement(base, {
+              locals: ctx.locals,
+              view: res.body,
+              req: req
+            })
+          ))
+          .append(null)
         if (res.status === 404) res.status = 200
         res.set('Content-Type', 'text/html; charset=UTF-8')
       } catch (err) {
