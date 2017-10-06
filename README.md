@@ -108,11 +108,9 @@ Sometimes the goal is not to render the entire page with React, or you want to u
 app.use(renderer({ root: '#my-element' }))
 ```
 
-# Nesting Components (pre v16)
+# Nesting Components
 When rendering React expects a constant outer layer for elements like html, head and body.
 @rill/react makes it easy to wrap react components with the Rill router with a special `#wrap` function.
-
-In react@16 and beyond you can create your pages in a more traditional way with a <Page> element rendered in each component or similar approach if you like.
 
 ```js
 const { wrap } = require("@rill/react")
