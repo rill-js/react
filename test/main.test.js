@@ -31,6 +31,7 @@ describe('@rill/react', function () {
           ctx.res.body = React.createElement(View, { hello: 'world' })
         })
         .listen()
+        .unref()
     )
 
     return request
@@ -58,6 +59,7 @@ describe('@rill/react', function () {
           ctx.res.body = React.createElement(View, { hello: 'world' })
         })
         .listen()
+        .unref()
     )
 
     return request
